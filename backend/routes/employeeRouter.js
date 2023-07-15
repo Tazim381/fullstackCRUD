@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const router = Router()
-const Task = require('../model/taskModel')
+const Employee= require('../model/employeeModel')
 
 
 router.get('/users',(req,res)=>{
@@ -8,16 +8,16 @@ router.get('/users',(req,res)=>{
 })
 
 router.get('/getTask',async(req,res) =>{
-    const tasks = await Task.find()
-    res.json(tasks)
+    const employee = await Employee.find()
+    res.json(employee)
 })
 
 router.post("/setTask", async (req, res) => {
    try{
-    const taskObj = req.body
-    const task = new Task(taskObj);
-    await task.save();
-    res.status(201).json(task);
+    const employeeObj = req.body
+    const employee = new Employee(employeeObj);
+    await employee.save();
+    res.status(201).json(employee);
    } catch(error) {
     console.error(error)
    }
@@ -27,9 +27,9 @@ router.put("/updateTask/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const body = req.body;
-        const task = await Task.findByIdAndUpdate(id, body, { new: true });
-        if (task) {
-          res.json(task);
+        const employee = await Employee.findByIdAndUpdate(id, body, { new: true });
+        if (employee) {
+          res.json(employee);
         } else {
           res.status(404).json({ message: "user not found" });
         }
@@ -41,9 +41,9 @@ router.put("/updateTask/:id", async (req, res) => {
  router.delete("/deleteTask/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const task = await Task.findByIdAndDelete(id);
-        if (task) {
-          res.status(201).json(task);
+        const employee = await Employee.findByIdAndDelete(id);
+        if (employee) {
+          res.status(201).json(employee);
         } else {
           res.status(404).json({ message: "user not found" });
         }

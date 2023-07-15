@@ -2,7 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const connectDB = require('./config/db')
-const taskRouter = require('./routes/taskRouter')
+const employeeRouter = require('./routes/employeeRouter')
+const userRouter = require('./routes/userRouter')
 require('dotenv').config()
 
 const app = express()
@@ -13,7 +14,8 @@ app.use(cors())
 
 connectDB()
 
-app.use("/",taskRouter)
+app.use("/",employeeRouter)
+app.use("/api/",userRouter)
 
 app.listen(PORT,()=>{
     console.log("Server running at port "+ `${PORT}`)
