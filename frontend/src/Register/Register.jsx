@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {useState} from 'react'
+import { Link } from 'react-router-dom'
+
 
 const Register = () => {
 const[firstName,setFirstName] = useState("")
@@ -39,8 +41,9 @@ const [updateUI,setUpdateUI] = useState("")
         <input className='border-2 border-sky-500'type="text" placeholder='Enter last Name' value={lastName} onChange={(e) => {setLastName(e.target.value) }} />
         <input className='border-2 border-sky-500'type="text"  placeholder='Ener email' value={email} onChange={(e) => {setEmail(e.target.value) }} />
         <input className='border-2 border-sky-500'type="text"  placeholder='Ener password' value={password} onChange={(e) => {setPassword(e.target.value) }}  />
-
+        <Link to="/login">
         <button type="submit" className="bg-sky-500 px-3 py-2" onClick={createUser}>Submit</button>
+        </Link>
     </div>
   )
 }
