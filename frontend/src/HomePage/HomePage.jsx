@@ -82,6 +82,7 @@ const  HomePage = () => {
        <Link to="addProduct">Add Product</Link>
        <Link to="login">Login</Link>
        <Link to="register">Sign Up </Link>
+       <Link to="/users/profile">See Profile</Link>
     </navbar>
     
     <div className='flex gap-10 mt-20 justify-center '>

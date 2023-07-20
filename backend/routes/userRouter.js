@@ -3,10 +3,11 @@ const router = Router()
 const User = require('../model/UserModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const authenticateToken = require("../middlewire/auth")
 
 router.post('/createUser', async(req,res) => {
    try{
-
+    
     const {firstName,lastName,email,password} = req.body
     if(!(firstName&& lastName && email && password)) {
        return res.status(400).send("Incomplete User")
@@ -40,6 +41,16 @@ router.get("/users",( async (req, res) => {
   }
 }));
 
+router.get("/users/profile", authenticateToken, async (req, res) => {
+  try {
+      const id = req.user.id;
+      const user = await User.findById(id);
+      res.status(200).json(user);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Something went wrong to get user" });
+  }
+});
 
 router.post("/users/login", async (req, res) => {
   const { email, password } = req.body;

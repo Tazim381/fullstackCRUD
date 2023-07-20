@@ -14,6 +14,7 @@ const LoginPage = () => {
     })
     .then(result=>{
       console.log(result.data)
+      localStorage.setItem('set-token-for-user',result.data)
     })
   } catch(error) {
     console.log(error)
