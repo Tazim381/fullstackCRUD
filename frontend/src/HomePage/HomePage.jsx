@@ -76,6 +76,11 @@ const  HomePage = () => {
     setUpdateId(id)
   }
 
+  const logOut =()=> {
+    localStorage.removeItem('set-token-for-user');
+    alert("Logout Successfully")
+  }
+
   return (
    <div>
     <navbar className="flex gap-10">
@@ -83,6 +88,7 @@ const  HomePage = () => {
        <Link to="login">Login</Link>
        <Link to="register">Sign Up </Link>
        <Link to="/users/profile">See Profile</Link>
+       <button onClick={logOut}>LogOut</button>
     </navbar>
     
     <div className='flex gap-10 mt-20 justify-center '>

@@ -47,7 +47,12 @@ const CreateTask = () => {
     }
 
     const deleteTask =(id) => {
-        axios.delete(`http://localhost:5000/api/users/deleteTask/${id}`)
+        axios.delete(`http://localhost:5000/api/users/deleteTask/${id}`,
+        {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem(`set-token-for-user`)} `
+            }
+        })
         .then((res) => {
             console.log(res)
             setUpdateUI((updateUI) => (!updateUI))
@@ -58,6 +63,10 @@ const CreateTask = () => {
         axios.put(`http://localhost:5000/api/users/updateTask/${updateId}`,{
             taskName:taskName,
             taskType:taskType,
+        },{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem(`set-token-for-user`)} `
+            }
         }) . then((res) => {
             console.log(res)
             setUpdateId('')

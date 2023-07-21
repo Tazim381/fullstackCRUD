@@ -32,10 +32,11 @@ router.get('/users/getTask', authenticateToken, async (req, res) => {
     }
 })
 
-router.delete('/users/deleteTask/:id', async (req, res) => {
+router.delete('/users/deleteTask/:id',authenticateToken, async (req, res) => {
     try {
         const id = req.params.id;
-        const userTask = await UserTask.findByIdAndDelete(id);
+        const userId = req.user.id
+        const userTask = await UserTask.findByIdAndDelete({_id:id,user:userId});
         if (userTask) {
           res.status(201).json(userTask);
         } else {
@@ -48,11 +49,12 @@ router.delete('/users/deleteTask/:id', async (req, res) => {
 })
 
 
-router.put('/users/updateTask/:id', async(req,res) => {
+router.put('/users/updateTask/:id',authenticateToken, async(req,res) => {
     try{
         const id = req.params.id
+        const userId = req.user.id
         const body = req.body
-        const userTask = await UserTask.findByIdAndUpdate(id,body,{new:true})
+        const userTask = await UserTask.findOneAndUpdate({_id:id,user:userId},body,{new:true})
         if(!userTask) {
             res.status(404).json({message:"user paoa jayni"})
         } else {
