@@ -14,7 +14,7 @@ const  HomePage = () => {
   const[firstName,setFirstName] = useState("")
   const[lastName,setLastName] = useState("")
   const[task,setTask] = useState("")
-
+  const[isLogin, setLogin] = useState(false)
   useEffect(() => {
     fetch("http://localhost:5000/getTask")
     .then(response => response.json())
@@ -25,6 +25,12 @@ const  HomePage = () => {
       )
   },[updateUI])
 
+ useEffect(()=>{
+    const islogin =  localStorage.getItem('set-token-for-user');
+    if(islogin) {
+      setLogin(true)
+    }
+ },[isLogin])
 
   const addTask =() =>{
     axios.post('http://localhost:5000/setTask', {
@@ -79,16 +85,17 @@ const  HomePage = () => {
   const logOut =()=> {
     localStorage.removeItem('set-token-for-user');
     alert("Logout Successfully")
+    setLogin(false)
   }
 
   return (
    <div>
     <navbar className="flex gap-10">
        <Link to="addProduct">Add Product</Link>
-       <Link to="login">Login</Link>
+       <Link to="login">{isLogin?"":"Login"}</Link>
+       <button onClick={isLogin?logOut:""}>{isLogin?"LogOut":""}</button>
        <Link to="register">Sign Up </Link>
-       <Link to="/users/profile">See Profile</Link>
-       <button onClick={logOut}>LogOut</button>
+       <Link to="/users/profile">See Profile</Link>  
     </navbar>
     
     <div className='flex gap-10 mt-20 justify-center '>

@@ -54,6 +54,9 @@ router.get("/users/profile", authenticateToken, async (req, res) => {
 
 router.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
+
+  try{
+
   const user = await User.findOne({ email: email });
   console.log(user)
   const isValidPassword = await bcrypt.compare(password , user.password);
@@ -74,6 +77,8 @@ router.post("/users/login", async (req, res) => {
     userObj["accessToken"] = accessToken;
     userObj["refreshToken"] = refreshToken;
     res.status(201).json(userObj.accessToken);
+} } catch(error ) {
+    res.status(404).send(error)
 }
 });
 
