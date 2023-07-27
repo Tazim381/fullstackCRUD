@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
+import {AiOutlineMail} from 'react-icons/ai'
+import {FaRegUser} from 'react-icons/fa'
 
 
 const Profile = () => {
@@ -20,11 +22,15 @@ const Profile = () => {
           )
       },[profile])
   return (
-    <div>
-            <Link to ='/createTask'>Create Task</Link>
-            <p>{profile.firstName}</p>
-            <p>{profile.lastName}</p>
-            <p>{profile.email}</p>
+    <div className='flex m-40 gap-36'>
+           <div>
+            <h1 className='text-2xl font-bold'>User Details </h1>
+            <p className='font-semibold flex gap-4 items-center'> <FaRegUser/> {profile.firstName} {profile.lastName}</p>
+            <p className='flex gap-4 items-center'><AiOutlineMail/>{profile.email}</p>
+            </div>
+            <div>
+            <Link to ='/createTask' className="bg-green-500 text-2xl px-3 py-2">Create Task</Link>
+            </div>
         </div>
   )
 }

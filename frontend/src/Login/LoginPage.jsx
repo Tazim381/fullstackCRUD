@@ -17,7 +17,7 @@ const LoginPage = () => {
       localStorage.setItem('set-token-for-user', response.data);
       alert("login successfull")
       form.reset();
-      navigate("/users/profile");
+      navigate("/");
       // Redirect to profile page after successful login
     } catch (error) {
       console.log(error);
@@ -26,13 +26,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex flex-col gap-5 items-center mt-10 ml-96 border-2 border-sky-500 w-96 justify-center p-10'>
-      Login Form
-      <form onSubmit={login}>
-        <input name='email' className='border-2 border-sky-500' type="email" placeholder='Enter Email' required />
-        <input name='password' className='border-2 border-sky-500' type="password" placeholder='Enter password' required />
-
-        <button type="submit" className="bg-sky-500 px-3 py-2">Submit</button>
+    <div className='flex flex-col gap-5 items-center mt-10 ml-96 border-2 border-[#61d7a2] w-96 justify-center p-10'>
+      <p className='text-2xl font-bold'>Login Form</p> 
+      <form onSubmit={login} className='flex flex-col gap-3'>
+        <input name='email' className='border-2 border-[#61d7a2]' type="email" placeholder='Enter Email' required />
+        <input name='password' className='border-2 border-[#61d7a2]' type="password" placeholder='Enter password' required />
+        <button type="submit" className="bg-[#61d7a2] px-3 py-2">Submit</button>
       </form>
     </div>
   );

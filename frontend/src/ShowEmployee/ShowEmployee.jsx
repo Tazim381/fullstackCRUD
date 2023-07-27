@@ -28,7 +28,7 @@ const ShowEmployee = ({ employees, update, deleteTask }) => {
                         <td className='pl-10'>{employee.firstName}</td>
                         <td className='pl-10'>{employee.lastName}</td>
                         <td className='pl-10'>{employee.task}</td>
-                       <td  className='pl-10'> <button className="border-2 border-sky-500 ml-8 mt-5" onClick={() => updateProduct(employee._id,employee.firstName, employee.lastName, employee.task)}>Update</button>
+                       <td  className='pl-10'> <button className="border-2 border-[#61d7a2] ml-8 mt-5" onClick={() => updateProduct(employee._id,employee.firstName, employee.lastName, employee.task)}>Update</button>
                         </td> 
                         <td  className='pl-8'>
                         <button className="border-2 border-red-500 ml-8 mt-5" onClick={() => deleteProduct(employee._id)}>Delete</button>

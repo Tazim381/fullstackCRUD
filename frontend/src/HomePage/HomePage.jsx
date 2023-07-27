@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {useState} from 'react'
 import axios from 'axios'
 import ShowEmployee from '../ShowEmployee/ShowEmployee'
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar';
 import { Link } from "react-router-dom";
 import { Routes, Route } from "react-router-dom"
 
@@ -89,17 +89,12 @@ const  HomePage = () => {
   }
 
   return (
-   <div>
-    <navbar className="flex gap-10">
-       <Link to="addProduct">Add Product</Link>
-       <Link to="login">{isLogin?"":"Login"}</Link>
-       <button onClick={isLogin?logOut:""}>{isLogin?"LogOut":""}</button>
-       <Link to="register">Sign Up </Link>
-       <Link to="/users/profile">See Profile</Link>  
-    </navbar>
+   <div className=' bg-[#F0FFF0]'>
+   
+    <NavBar isLogin={isLogin} logOut={logOut} />
     
     <div className='flex gap-10 mt-20 justify-center '>
-    <div className='flex flex-col border-2 border-sky-600 p-10'>
+    <div className='flex flex-col border-2 border-[#61d7a2] p-10'>
     <h1 className='text-2xl font-bold'>Enter Employee Details</h1>
     <label htmlFor="">Enter First Name</label>
     <input className='border-2 border-sky-500'type="text" value={firstName} onChange={(e) => {setFirstName(e.target.value) }} placeholder='Enter first name'/>
@@ -110,7 +105,7 @@ const  HomePage = () => {
     <label htmlFor="">Enter Task</label>
     <input className='border-2 border-sky-500'type="text" value={task} onChange={(e) => {setTask(e.target.value) }} placeholder='Enter task'/>
     <br />
-    <button type="submit" className='border-2 border-sky-500 p-1 bg-sky-500' onClick={updateMode ? updateTask : addTask}>{updateMode ? "Update" : "ADD"}</button>
+    <button type="submit" className='border-2 border-sky-500 p-1 bg-[#61d7a2]' onClick={updateMode ? updateTask : addTask}>{updateMode ? "Update" : "ADD"}</button>
     </div>
     <div>
       <ShowEmployee employees={employees} update={update} deleteTask={deleteTask}/>
