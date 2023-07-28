@@ -5,7 +5,18 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("../middlewire/auth")
 const multer  = require('multer')
-const upload = multer({ dest: './public/data/uploads' })
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/data/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix + '-'+ file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
 
 router.post('/createUser', async(req,res) => {
    try{
@@ -32,9 +43,12 @@ router.post('/createUser', async(req,res) => {
    }
 })
 
+
+
 router.post('/uploadFile', upload.single('file'), (req, res) => {
   res.json({message:"file uploaded"})
 })
+
 
 router.get("/users",( async (req, res) => {
   try {
