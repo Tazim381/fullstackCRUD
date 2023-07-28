@@ -46,7 +46,7 @@ router.post('/createUser', async(req,res) => {
 
 
 router.post('/uploadFile', upload.single('file'), (req, res) => {
-  res.json({message:"file uploaded"})
+  res.json(req.file)
 })
 
 
