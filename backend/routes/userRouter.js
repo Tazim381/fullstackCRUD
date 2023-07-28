@@ -4,6 +4,8 @@ const User = require('../model/UserModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("../middlewire/auth")
+const multer  = require('multer')
+const upload = multer({ dest: './public/data/uploads' })
 
 router.post('/createUser', async(req,res) => {
    try{
@@ -28,6 +30,10 @@ router.post('/createUser', async(req,res) => {
      console.error(error)
      res.status(401).json("user create korte somossa hoitese");
    }
+})
+
+router.post('/uploadFile', upload.single('file'), (req, res) => {
+  res.json({message:"file uploaded"})
 })
 
 router.get("/users",( async (req, res) => {
