@@ -27,14 +27,53 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex flex-col gap-5 items-center mt-10 ml-96 border-2 border-[#61d7a2] w-96 justify-center p-10'>
-      <p className='text-2xl font-bold'>Login Form</p> 
-      <form onSubmit={login} className='flex flex-col gap-3'>
-        <input name='email' className='border-2 border-[#61d7a2]' type="email" placeholder='Enter Email' required />
-        <input name='password' className='border-2 border-[#61d7a2]' type="password" placeholder='Enter password' required />
-        <button type="submit" className="bg-[#61d7a2] px-3 py-2 text-white font-bold">Submit</button>
-        <p>Do not have on account ? <Link to="/register" className="text-[#61d7a2] font-bold">Sign Up </Link></p>
-      </form>
+
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-green-100">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign In</h2>
+        <form className="mt-8 space-y-6" onSubmit={login}>
+          <div>
+            <label htmlFor="email-address" className="block text-sm font-medium text-gray-900">
+              Email address
+            </label>
+            <input
+              id="email-address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              placeholder="Email address"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-900">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Sign in
+            </button>
+          </div>
+
+          <div className="text-sm font-medium text-gray-500 flex justify-between">
+            <p>Not registered?</p> <Link to ="/register" className='font-bold text-1xl text-blue-600'>Create an account</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
