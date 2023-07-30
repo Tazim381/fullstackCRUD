@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 const LoginPage = () => {
@@ -31,7 +32,8 @@ const LoginPage = () => {
       <form onSubmit={login} className='flex flex-col gap-3'>
         <input name='email' className='border-2 border-[#61d7a2]' type="email" placeholder='Enter Email' required />
         <input name='password' className='border-2 border-[#61d7a2]' type="password" placeholder='Enter password' required />
-        <button type="submit" className="bg-[#61d7a2] px-3 py-2">Submit</button>
+        <button type="submit" className="bg-[#61d7a2] px-3 py-2 text-white font-bold">Submit</button>
+        <p>Do not have on account ? <Link to="/register" className="text-[#61d7a2] font-bold">Sign Up </Link></p>
       </form>
     </div>
   );

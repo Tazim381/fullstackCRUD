@@ -36,19 +36,15 @@ const NavBar = ({ isLogin, logOut }) => {
       alert("Login First ")
     }
   }
-  const signUp=()=>{
-    navigate('/register')
-  }
   return (
     <navbar className="flex gap-10 h-16 items-center shadow-md justify-between">
       <div className="flex gap-10">
-        <button  className="hover:bg-[#61d7a2] hover:text-white px-6 py-2 rounded-3xl ml-10"   onClick={signUp}>Sign Up </button>
         <button  className="hover:bg-[#61d7a2] hover:text-white px-6 py-2 rounded-3xl ml-10" onClick={seeProfile}>See Profile</button>
         <button  className="hover:bg-[#61d7a2] hover:text-white px-6 py-2 rounded-3xl ml-10" onClick={createTask}>Create Task</button>
       </div>
       <div className="mr-10">
         {isLogin ? (
-          <button className="bg-[#61d7a2] px-6 py-2 rounded-3xl" onClick={logOut}>{profile.firstName}{profile.lastName}</button>
+          <button className="bg-[#61d7a2] px-6 py-2 rounded-3xl" onClick={logOut}>{profile.lastName}</button>
         ) : (
           <Link className="bg-[#61d7a2] px-6 py-2 rounded-3xl hover:text-white" to="login">Login</Link>
         )}
