@@ -1,22 +1,51 @@
-const UserProfileModal = ({ profile, logOut,toggleModal }) => {
+import React from 'react'
+import axios from 'axios'
+import {useState} from 'react'
+import { Link } from 'react-router-dom'
 
 
-    return (
-      <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="bg-white p-5 rounded-lg">
-          {/* Display user details */}
-          <p>{profile.firstName} {profile.lastName}</p>
-          {/* Add more user details here */}
-          {/* Render the logout button */}
-          <button className="bg-[#61d7a2] px-4 py-2 rounded-lg" onClick={logOut}>
-            Logout
-          </button>
-          {/* Close the modal when clicking outside the content */}
-          <div className="absolute top-0 left-0 w-full h-full" onClick={toggleModal} />
-        </div>
-      </div>
-    );
-  };
-  
-  export default UserProfileModal;
-  
+const Register = () => {
+const[firstName,setFirstName] = useState("")
+const[lastName,setLastName] = useState("")
+const[email,setEmail] = useState("")
+const[password,setPassword] = useState("")
+const [updateUI,setUpdateUI] = useState("")
+
+
+ const createUser =() => {
+    axios.post('http://localhost:5000/api/createUser', {
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
+      password:password
+    })
+    .then((response)=> {
+      setUpdateUI((updateUI) => !updateUI)
+      console.log(response);
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setPassword('')
+
+    })
+    .catch((error) =>{
+      console.log(error);
+    });
+
+ }
+
+  return (
+    <div className='flex flex-col gap-5 items-center mt-10 ml-96 border-2 border-sky-500 w-96 justify-center p-10'>
+        Register From
+        <input className='border-2 border-sky-500'type="text" placeholder='Ener First Name' value={firstName} onChange={(e) => {setFirstName(e.target.value) }}  required/>
+        <input className='border-2 border-sky-500'type="text" placeholder='Enter last Name' value={lastName} onChange={(e) => {setLastName(e.target.value) }} required />
+        <input className='border-2 border-sky-500'type="text"  placeholder='Ener email' value={email} onChange={(e) => {setEmail(e.target.value) }} required />
+        <input className='border-2 border-sky-500'type="text"  placeholder='Ener password' value={password} onChange={(e) => {setPassword(e.target.value) }} required />
+        <Link to="/login">
+        <button type="submit" className="bg-sky-500 px-3 py-2" onClick={createUser}>Submit</button>
+        </Link>
+    </div>
+  )
+}
+
+export default Register
